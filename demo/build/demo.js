@@ -55,6 +55,10 @@ function connect(port, baudrate) {
 	});
 
 	sp.on("data", function(data) {
+    data = data.toString();
+    if (data.match('\n')) {
+      data += new Date().toString() + '\n=================================\n';
+    }
 		output.textContent += data.toString();
 	});
 
